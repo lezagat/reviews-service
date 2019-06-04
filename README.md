@@ -85,6 +85,21 @@ result[0] = {
     review: "Iure modi eos et expedita. Itaque est cupiditate similique laborum dolorem voluptatum quos. Placeat autem ut exercitationem et. Porro culpa rerum et debitis in voluptates sit sit perferendis. Velit deleniti nostrum ut sunt maxime animi quia sit. Beatae itaque tempora sed quo et ut."
 },
 
+
+## Requests
+
+GET
+Listening for a get request with the same API ('/restaurants/:id/reviews'). Once receieved, will run the query to get the requested back to the server, then back to the client.
+
+POST
+Listening for a post request with the same API ('/restaurants/:id/reviews'). Once received, will run the query to save the data/paramators into the database and sends back a response (pass/fail). The parameters will be rest id, name, type, price, location, description, food score, decor score, service score, and the review.  Then upon success, a GET request will be sent to get the data for the paraments above.
+
+Update
+Listening for a put request with the same API ('/restaurants/:id/reviews'). Once receieved, will run the query to update the data/paramators that is already in the database and sends back a response (pass/fail). The parameters will be id, name, type, price, location, description, food score, decore score, service score, and the review. (The reason we need all of them is because any of those can be upated). 
+
+Delete
+Listening for a delete request with the same API ('/restaurants/:id/reviews'). Once received, will run the query to remove the data that is already in the database and then sends bak a response (pass.fail). The parameters will be id, name, type, price, location, description, food score, decore score, service score, and the review. (The reason is because we need all the information related to the review to be removed)
+
 ## Dependencies
 
 From within the root directory:

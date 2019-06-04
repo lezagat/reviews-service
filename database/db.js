@@ -19,6 +19,15 @@ const getRecords = function (callback, restaurantNumber) {
   });
 };
 
+const postRecords = function (review,res,cb){
+  connection.query(`INSERT INTO restaurants (review) VALUES ("${review}")`,cb);
+}
+
+const updateRecords = function (review,res,cb){
+  connection.query(`UPDATE restaurants (review) VALUES ("${review}")`,cb);
+}
+
+
 module.exports = {
-  getRecords,
+  getRecords, postRecords, updateRecords
 };
