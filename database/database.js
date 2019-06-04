@@ -4,7 +4,7 @@ const dataGenerator = require('./dataGenerator.js');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'yourpassword',
+  // password: 'yourpassword',
 });
 
 connection.connect((error1) => {
