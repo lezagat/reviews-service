@@ -89,17 +89,176 @@ result[0] = {
 ## Requests
 
 GET
-Listening for a get request with the same API ('/restaurants/:id/reviews'). Once receieved, will run the query to get the requested back to the server, then back to the client.
+Returns json data on all reviews of a specific restaurant.
+
+URL
+
+'/restaurants/:id/reviews'
+
+Method:
+
+GET
+
+URL Params
+
+Required:
+
+id=[integer]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200 
+Error Response:
+
+Code: 404 NOT FOUND 
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 401 UNAUTHORIZED 
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/restaurants/:id/reviews",
+    dataType: "json",
+    type : "GET",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+      
+POST
+Sends json data to server to get saved into the database
+
+URL
+
+'/restaurants/:id/reviews'
+
+Method:
 
 POST
-Listening for a post request with the same API ('/restaurants/:id/reviews'). Once received, will run the query to save the data/paramators into the database and sends back a response (pass/fail). The parameters will be rest id, name, type, price, location, description, food score, decor score, service score, and the review.  Then upon success, a GET request will be sent to get the data for the paraments above.
 
-Update
-Listening for a put request with the same API ('/restaurants/:id/reviews'). Once receieved, will run the query to update the data/paramators that is already in the database and sends back a response (pass/fail). The parameters will be id, name, type, price, location, description, food score, decore score, service score, and the review. (The reason we need all of them is because any of those can be upated). 
+URL Params
 
-Delete
-Listening for a delete request with the same API ('/restaurants/:id/reviews'). Once received, will run the query to remove the data that is already in the database and then sends bak a response (pass.fail). The parameters will be id, name, type, price, location, description, food score, decore score, service score, and the review. (The reason is because we need all the information related to the review to be removed)
+Required:
 
+id=[integer]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200 
+Error Response:
+
+Code: 404 NOT FOUND 
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 401 UNAUTHORIZED 
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/restaurants/:id/reviews",
+    dataType: "json",
+    type : "PUT",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+PUT
+Sends json data to the server to get specific data updated in the database
+
+URL
+
+'/restaurants/:id/reviews/review'
+
+Method:
+
+PUT
+
+URL Params
+
+Required:
+
+id=[integer]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200 
+Error Response:
+
+Code: 404 NOT FOUND 
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 401 UNAUTHORIZED 
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/restaurants/:id/reviews/review",
+    dataType: "json",
+    type : "PUT",
+    success : function(r) {
+      console.log(r);
+    }
+  });
+
+DELETE
+Sends request to the server to get existing data in database to be erased
+URL
+
+'/restaurants/:id/reviews/review'
+
+Method:
+
+DELETE
+
+URL Params
+
+Required:
+
+id=[integer]
+
+Data Params
+
+None
+
+Success Response:
+
+Code: 200 
+Error Response:
+
+Code: 404 NOT FOUND 
+Content: { error : "User doesn't exist" }
+OR
+
+Code: 401 UNAUTHORIZED 
+Content: { error : "You are unauthorized to make this request." }
+Sample Call:
+
+  $.ajax({
+    url: "/restaurants/:id/reviews/review",
+    dataType: "json",
+    type : "DELETE",
+    success : function(r) {
+      console.log(r);
+    }
+  });
 ## Dependencies
 
 From within the root directory:
