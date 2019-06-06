@@ -23,7 +23,7 @@ const dataGen = (writer, data) =>{
       i--;
       if(i===0){
         writer.write({
-          name : getRandomItem(hardData.names).toUpperCase(),
+          name : getRandomItem(hardData.names).toUpperCase() + i,
           type : getRandomItem(hardData.types),
           price : getRandomItem(hardData.prices),
           location : getRandomItem(hardData.locations),

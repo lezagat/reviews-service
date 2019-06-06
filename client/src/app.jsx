@@ -42,9 +42,9 @@ class App extends React.Component {
     const id = window.location.pathname.substring(13);
     $.ajax({
       method: 'GET',
-      url: `/restaurants/1/reviews`,
+      url: `/restaurants/${id}/reviews`,
       success: (result) => {
-        console.log('Server success!');
+        console.log(result);
         const newRestaurant = result[0];
         const quotedReview = this.addBoldedQuotes(result[0].review);
         newRestaurant.review = quotedReview;

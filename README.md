@@ -116,24 +116,27 @@ Error Response:
 
 Code: 404 NOT FOUND 
 Content: { error : "User doesn't exist" }
-OR
 
-Code: 401 UNAUTHORIZED 
-Content: { error : "You are unauthorized to make this request." }
 Sample Call:
 
-  $.ajax({
-    url: "/restaurants/:id/reviews",
-    dataType: "json",
-    type : "GET",
-    success : function(r) {
-      console.log(r);
-    }
-  });
+    $.ajax({
+      method: 'GET',
+      url: `/restaurants/${id}/reviews`,
+      success: (result) => {
+        console.log(result);
+        const newRestaurant = result[0];
+        const quotedReview = this.addBoldedQuotes(result[0].review);
+        newRestaurant.review = quotedReview;
+        this.setState({
+          currentRestaurant: newRestaurant,
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+---
 
-      
-
-    
 POST
 Sends json data to server to get saved into the database
 
@@ -153,31 +156,44 @@ id=[integer]
 
 Data Params
 
-None
+{
+    rest_id: 1,
+    name: "CAFE BEAUJOLAIS",
+    type: "Japanese",
+    price: "$$$$",
+    location: "Tenderloin",
+    description: "Museum's bistro for star chef's recipes",
+    foodScore: "2.7",
+    decorScore: "2.4",
+    serviceScore: "0.2",
+    review: "Iure modi eos et expedita. Itaque est cupiditate similique laborum dolorem voluptatum quos. Placeat autem ut exercitationem et. Porro culpa rerum et debitis in voluptates sit sit perferendis. Velit deleniti nostrum ut sunt maxime animi quia sit. Beatae itaque tempora sed quo et ut."
+},
+
 
 Success Response:
 
-Code: 200 
+Code: 201
 Error Response:
 
-Code: 404 NOT FOUND 
-Content: { error : "User doesn't exist" }
-OR
+Code: 500 NOT FOUND 
+Content: { error : "This page isn't working" }
 
-Code: 401 UNAUTHORIZED 
-Content: { error : "You are unauthorized to make this request." }
+
 Sample Call:
 
   $.ajax({
     url: "/restaurants/:id/reviews",
     dataType: "json",
-    type : "PUT",
-    success : function(r) {
-      console.log(r);
+    type : "POST",
+    success : function() {
+      console.log("Successfully posted");
+    }
+    error: (error) =>{
+      console.log(error)
     }
   });
 
-
+---
 
 
 PUT
@@ -199,7 +215,18 @@ id=[integer]
 
 Data Params
 
-None
+{
+    rest_id: 1,
+    name: "CAFE BEAUJOLAIS",
+    type: "Japanese",
+    price: "$$$$",
+    location: "Tenderloin",
+    description: "Museum's bistro for star chef's recipes",
+    foodScore: "2.7",
+    decorScore: "2.4",
+    serviceScore: "0.2",
+    review: "Iure modi eos et expedita. Itaque est cupiditate similique laborum dolorem voluptatum quos. Placeat autem ut exercitationem et. Porro culpa rerum et debitis in voluptates sit sit perferendis. Velit deleniti nostrum ut sunt maxime animi quia sit. Beatae itaque tempora sed quo et ut."
+},
 
 Success Response:
 
@@ -207,20 +234,33 @@ Code: 200
 Error Response:
 
 Code: 404 NOT FOUND 
-Content: { error : "User doesn't exist" }
-OR
 
-Code: 401 UNAUTHORIZED 
-Content: { error : "You are unauthorized to make this request." }
 Sample Call:
 
   $.ajax({
-    url: "/restaurants/:id/reviews/review",
+    url: "/restaurants/:id/reviews",
     dataType: "json",
     type : "PUT",
-    success : function(r) {
-      console.log(r);
-    }
+    success : 
+        $.ajax({
+        url: "/restaurants/:id/reviews/review",
+        dataType: "json",
+        type : "GET",
+        success : 
+          this.setState({
+            console.log(result);
+            const newRestaurant = result[0];
+            const quotedReview = this.addBoldedQuotes(result[0].review);
+            newRestaurant.review = quotedReview;
+            this.setState({
+              currentRestaurant: newRestaurant,
+            });
+          },
+          error: (error) => {
+            console.log(error);
+          },
+              })
+        }
   });
 
 
@@ -241,7 +281,7 @@ URL Params
 
 Required:
 
-id=[integer]
+id=[integer] (1-10,000,000)
 
 Data Params
 
@@ -252,22 +292,19 @@ Success Response:
 Code: 200 
 Error Response:
 
-Code: 404 NOT FOUND 
-Content: { error : "User doesn't exist" }
-OR
+Code: 500 NOT FOUND 
 
-Code: 401 UNAUTHORIZED 
-Content: { error : "You are unauthorized to make this request." }
-Sample Call:
 
   $.ajax({
-    url: "/restaurants/:id/reviews/review",
+    url: "/restaurants/:id/reviews",
     dataType: "json",
     type : "DELETE",
-    success : function(r) {
-      console.log(r);
+    success : function() {
+      console.log("Successfully deleted");
     }
   });
+
+
 ## Dependencies
 
 From within the root directory:
