@@ -88,7 +88,7 @@ result[0] = {
 
 ## Requests
 
-GET
+***GET***
 Returns json data on all reviews of a specific restaurant.
 
 URL
@@ -137,7 +137,7 @@ Sample Call:
     });
 ---
 
-POST
+***POST***
 Sends json data to server to get saved into the database
 
 URL
@@ -196,7 +196,7 @@ Sample Call:
 ---
 
 
-PUT
+***PUT***
 Sends json data to the server to get specific data updated in the database
 
 URL
@@ -267,7 +267,7 @@ Sample Call:
 
 
 
-DELETE
+***DELETE***
 Sends request to the server to get existing data in database to be erased
 URL
 
