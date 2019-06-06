@@ -132,6 +132,8 @@ Sample Call:
   });
 
       
+
+    
 POST
 Sends json data to server to get saved into the database
 
@@ -175,6 +177,9 @@ Sample Call:
     }
   });
 
+
+
+
 PUT
 Sends json data to the server to get specific data updated in the database
 
@@ -217,6 +222,10 @@ Sample Call:
       console.log(r);
     }
   });
+
+
+
+
 
 DELETE
 Sends request to the server to get existing data in database to be erased
