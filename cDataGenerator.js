@@ -14,7 +14,7 @@ const randomScore = function () {
 };
 
 const dataGen = (writer, data) =>{
-  writer.pipe(fs.createWriteStream('data.csv'));
+  writer.pipe(fs.createWriteStream('data1.csv'));
   let i = 10000000
   write();
   function write(){
@@ -23,7 +23,8 @@ const dataGen = (writer, data) =>{
       i--;
       if(i===0){
         writer.write({
-          name : getRandomItem(hardData.names).toUpperCase() + i,
+          id: i + 1 ,
+          name : getRandomItem(hardData.names).toUpperCase() + (i + 1),
           type : getRandomItem(hardData.types),
           price : getRandomItem(hardData.prices),
           location : getRandomItem(hardData.locations),

@@ -1,22 +1,25 @@
 DROP DATABASE IF EXISTS restaurants;
 
 CREATE DATABASE restaurants;
+--createdb
 
-USE restaurants;
+\c restaurants;
+--psql database
 
-CREATE TABLE restaurants ( 
-rest_id INT AUTO_INCREMENT,
-name VARCHAR(255) NOT NULL,
-type VARCHAR(255) NOT NULL,
+CREATE TABLE restaurantreview ( 
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+type VARCHAR(50) NOT NULL,
 price VARCHAR(5) NOT NULL,
-location VARCHAR(255) NOT NULL,
-description VARCHAR(255) NOT NULL,
-foodScore VARCHAR(5) NOT NULL,
-decorScore VARCHAR(5) NOT NULL,
-serviceScore VARCHAR(5) NOT NULL,
-review VARCHAR(400) NOT NULL, 
-PRIMARY KEY (rest_id))
+location VARCHAR(100) NOT NULL,
+description VARCHAR(100) NOT NULL,
+foodscore VARCHAR(10) NOT NULL,
+decorscore VARCHAR(10) NOT NULL,
+servicescore VARCHAR(50) NOT NULL,
+review TEXT NOT NULL
 );
 
-
-INSERT INTO restaurants (name, type, price, location, description, foodScore, decorScore, serviceScore, review) VALUES ?
+--serial is for postgres, while auto_increment is for mysql
+-- INSERT INTO restaurants (name, type, price, location, description, foodScore, decorScore, serviceScore, review) VALUES ?
+\timing
+-- COPY restaurantreview (name, type, price, location, description, foodscore, decorscore, servicescore, review) FROM '/Users/ivanlee/hrsf117/LeZagat/zagat-reviews/data.csv' DELIMITER ',' CSV;

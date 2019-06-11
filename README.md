@@ -25,10 +25,11 @@ Repo link for the Zagat reviews module in the middle of Zagat's page:
 2. [Requirements](#requirements)
 3. [Development](#development)
 4. [API](#API)
-5. [Dependencies](#Dependencies)
-6. [Authors](#Authors)
-7. [License](#License)
-8. [Acknowledgments](#Acknowledgments)
+5. [Requests](#Requests)
+6. [Dependencies](#Dependencies)
+7. [Authors](#Authors)
+8. [License](#License)
+9. [Acknowledgments](#Acknowledgments)
 
 ## Usage
 
@@ -88,26 +89,17 @@ result[0] = {
 
 ## Requests
 
-***GET***
+### GET
 Returns json data on all reviews of a specific restaurant.
 
-URL
+URL:
+```'/restaurants/:id/reviews'```
 
-'/restaurants/:id/reviews'
+Method: GET
 
-Method:
+URL Params Required: id=[integer]
 
-GET
-
-URL Params
-
-Required:
-
-id=[integer]
-
-Data Params
-
-None
+Data Params: None
 
 Success Response:
 
@@ -137,24 +129,16 @@ Sample Call:
     });
 ---
 
-***POST***
+### POST
 Sends json data to server to get saved into the database
 
-URL
+URL: ```'/restaurants/:id/reviews'```
 
-'/restaurants/:id/reviews'
+Method: POST
 
-Method:
+URL Params Required: id=[integer]
 
-POST
-
-URL Params
-
-Required:
-
-id=[integer]
-
-Data Params
+Data Params:
 
 {
     rest_id: 1,
@@ -196,24 +180,16 @@ Sample Call:
 ---
 
 
-***PUT***
+#### PUT
 Sends json data to the server to get specific data updated in the database
 
-URL
+URL: ```'/restaurants/:id/reviews/review'```
 
-'/restaurants/:id/reviews/review'
+Method: PUT
 
-Method:
+URL Params Required: id=[integer]
 
-PUT
-
-URL Params
-
-Required:
-
-id=[integer]
-
-Data Params
+Data Params:
 
 {
     rest_id: 1,
@@ -259,33 +235,24 @@ Sample Call:
           error: (error) => {
             console.log(error);
           },
-              })
-        }
+        })
+      }
   });
 
-
-
-
+---
 
 ***DELETE***
 Sends request to the server to get existing data in database to be erased
-URL
 
-'/restaurants/:id/reviews/review'
+URL: ```'/restaurants/:id/reviews/review'```
 
-Method:
+Method: DELETE
 
-DELETE
-
-URL Params
-
-Required:
+URL Params Required:
 
 id=[integer] (1-10,000,000)
 
-Data Params
-
-None
+Data Params: None
 
 Success Response:
 

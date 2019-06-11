@@ -31,3 +31,4 @@ build/
 dist/
 client/dist/bundle.js
 data.csv
+data1.csv
