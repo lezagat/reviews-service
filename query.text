@@ -1,0 +1,89 @@
+POSTSQL
+--------
+
+restaurants=# select * from restaurantreview where id = 117257;
+   id   |     name      |    type     | price | location |              description              | foodscore | decorscore | servicescore |                                                                                           review                                                                                            
+--------+---------------+-------------+-------+----------+---------------------------------------+-----------+------------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 117257 | SPRUCE9882744 | Singaporean | $$$   | Parkside | Quirky cafe with cozy snacks & coffee | 4.2       | 2.7        | 1.5          | Veritatis omnis est commodi quas quisquam ducimus qui. Enim fugiat fugiat. Similique cumque eligendi qui eveniet consequatur illum veniam et vitae. Impedit dolorem labore. Nulla eaque et.
+(1 row)
+
+Time: 6.062 ms
+
+
+restaurants=# select * from restaurantreview where name ='CENTRAL KITCHEN9000744';
+   id   |          name          | type  | price |  location   |            description            | foodscore | decorscore | servicescore |                                                                                                                                    review                                                                                                                                    
+--------+------------------------+-------+-------+-------------+-----------------------------------+-----------+------------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 999257 | CENTRAL KITCHEN9000744 | Irish | $$    | The Mission | Quick stop for exotic, tasty grub | 3.8       | 0.2        | 2.5          | Accusamus molestiae et quisquam corrupti est. Quo dicta ut quas dicta et doloremque odit. Consequuntur atque ut temporibus soluta consequatur recusandae. Distinctio et voluptatem placeat veritatis. Quo repudiandae asperiores quam ipsum repellendus aut voluptatem nemo.
+(1 row)
+
+Time: 2.471 ms
+
+
+
+
+Cassandra
+----------
+
+cqlsh:restaurants> tracing on
+Now Tracing is enabled
+cqlsh:restaurants> select * from restaurantreview where id =65676;
+
+ id    | decorscore | description                       | foodscore | location   | name                 | price | review                                                                                                                          | servicescore | type
+-------+------------+-----------------------------------+-----------+------------+----------------------+-------+---------------------------------------------------------------------------------------------------------------------------------+--------------+-------
+ 65676 |        0.6 | Quick stop for exotic, tasty grub |       1.4 | Tenderloin | CENTRAL KITCHEN65676 |    $$ | Ea laborum quae assumenda voluptatem praesentium expedita assumenda qui. Commodi voluptatibus assumenda quos. Eos sequi magnam. |          0.6 | Irish
+
+(1 rows)
+
+Tracing session: 154fcde0-8c98-11e9-a810-fb11b09fdf4d
+
+ activity                                                                              | timestamp                  | source    | source_elapsed | client
+---------------------------------------------------------------------------------------+----------------------------+-----------+----------------+-----------
+                                                                    Execute CQL3 query | 2019-06-11 15:27:23.199000 | 127.0.0.1 |              0 | 127.0.0.1
+ Parsing select * from restaurantreview where id =65676; [Native-Transport-Requests-1] | 2019-06-11 15:27:23.199000 | 127.0.0.1 |            673 | 127.0.0.1
+                                     Preparing statement [Native-Transport-Requests-1] | 2019-06-11 15:27:23.199000 | 127.0.0.1 |            965 | 127.0.0.1
+                                    Read-repair DC_LOCAL [Native-Transport-Requests-1] | 2019-06-11 15:27:23.201000 | 127.0.0.1 |           2091 | 127.0.0.1
+                    Executing single-partition query on restaurantreview [ReadStage-3] | 2019-06-11 15:27:23.201000 | 127.0.0.1 |           2307 | 127.0.0.1
+                                            Acquiring sstable references [ReadStage-3] | 2019-06-11 15:27:23.201000 | 127.0.0.1 |           2382 | 127.0.0.1
+                                               Merging memtable contents [ReadStage-3] | 2019-06-11 15:27:23.201000 | 127.0.0.1 |           2456 | 127.0.0.1
+                                Bloom filter allows skipping sstable 106 [ReadStage-3] | 2019-06-11 15:27:23.201000 | 127.0.0.1 |           2638 | 127.0.0.1
+                    Partition index with 0 entries found for sstable 105 [ReadStage-3] | 2019-06-11 15:27:23.205000 | 127.0.0.1 |           6879 | 127.0.0.1
+                                  Read 1 live rows and 0 tombstone cells [ReadStage-3] | 2019-06-11 15:27:23.207000 | 127.0.0.1 |           8966 | 127.0.0.1
+                                                                      Request complete | 2019-06-11 15:27:23.208432 | 127.0.0.1 |           9432 | 127.0.0.1
+
+
+
+
+                                                                      cqlsh:restaurants> select * from restaurantreview where name = 'OUTERLANDS112246';
+
+ id     | decorscore | description                              | foodscore | location | name             | price | review                                                                                                                                                          | servicescore | type
+--------+------------+------------------------------------------+-----------+----------+------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+-----------------
+ 112246 |        3.7 | Classic, buzzy gastropub with craft beer |       2.3 |     SoMa | OUTERLANDS112246 |  $$$$ | Reiciendis et est rerum. Optio ipsa quasi culpa est. Enim voluptas a tenetur a cupiditate aut. Veniam eum esse omnis. Perferendis distinctio vel qui dicta cum. |          1.4 | New Californian
+
+(1 rows)
+
+Tracing session: 48287780-8c98-11e9-a810-fb11b09fdf4d
+
+ activity                                                                                                                              | timestamp                  | source    | source_elapsed | client
+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------+-----------+----------------+-----------
+                                                                                                                    Execute CQL3 query | 2019-06-11 15:28:48.504000 | 127.0.0.1 |              0 | 127.0.0.1
+                                 Parsing select * from restaurantreview where name = 'OUTERLANDS112246'; [Native-Transport-Requests-2] | 2019-06-11 15:28:48.504000 | 127.0.0.1 |            199 | 127.0.0.1
+                                                                                     Preparing statement [Native-Transport-Requests-2] | 2019-06-11 15:28:48.505000 | 127.0.0.1 |           1566 | 127.0.0.1
+              Index mean cardinalities are restaurantreview_name:1. Scanning with restaurantreview_name. [Native-Transport-Requests-2] | 2019-06-11 15:28:48.506000 | 127.0.0.1 |           2405 | 127.0.0.1
+                                                                               Computing ranges to query [Native-Transport-Requests-2] | 2019-06-11 15:28:48.506000 | 127.0.0.1 |           2618 | 127.0.0.1
+ Submitting range requests on 257 ranges with a concurrency of 257 (0.003515625 rows per range expected) [Native-Transport-Requests-2] | 2019-06-11 15:28:48.507000 | 127.0.0.1 |           3298 | 127.0.0.1
+                                                                   Submitted 1 concurrent range requests [Native-Transport-Requests-2] | 2019-06-11 15:28:48.508000 | 127.0.0.1 |           4312 | 127.0.0.1
+                                        Executing read on restaurants.restaurantreview using index restaurantreview_name [ReadStage-1] | 2019-06-11 15:28:48.508000 | 127.0.0.1 |           4436 | 127.0.0.1
+                                              Executing single-partition query on restaurantreview.restaurantreview_name [ReadStage-1] | 2019-06-11 15:28:48.508000 | 127.0.0.1 |           4491 | 127.0.0.1
+                                                                                            Acquiring sstable references [ReadStage-1] | 2019-06-11 15:28:48.508000 | 127.0.0.1 |           4530 | 127.0.0.1
+                                               Skipped 0/3 non-slice-intersecting sstables, included 0 due to tombstones [ReadStage-1] | 2019-06-11 15:28:48.508000 | 127.0.0.1 |           4637 | 127.0.0.1
+                                                                     Partition index with 0 entries found for sstable 17 [ReadStage-1] | 2019-06-11 15:28:48.513000 | 127.0.0.1 |           9263 | 127.0.0.1
+                                                                                 Bloom filter allows skipping sstable 30 [ReadStage-1] | 2019-06-11 15:28:48.515000 | 127.0.0.1 |          10969 | 127.0.0.1
+                                                                                 Bloom filter allows skipping sstable 35 [ReadStage-1] | 2019-06-11 15:28:48.515000 | 127.0.0.1 |          11719 | 127.0.0.1
+                                                                    Executing single-partition query on restaurantreview [ReadStage-1] | 2019-06-11 15:28:48.516000 | 127.0.0.1 |          11993 | 127.0.0.1
+                                                                                            Acquiring sstable references [ReadStage-1] | 2019-06-11 15:28:48.516000 | 127.0.0.1 |          12050 | 127.0.0.1
+                                                                                               Merging memtable contents [ReadStage-1] | 2019-06-11 15:28:48.516000 | 127.0.0.1 |          12103 | 127.0.0.1
+                                                                                Bloom filter allows skipping sstable 106 [ReadStage-1] | 2019-06-11 15:28:48.516001 | 127.0.0.1 |          12232 | 127.0.0.1
+                                                                                           Key cache hit for sstable 105 [ReadStage-1] | 2019-06-11 15:28:48.516001 | 127.0.0.1 |          12332 | 127.0.0.1
+                                                                                  Read 1 live rows and 0 tombstone cells [ReadStage-1] | 2019-06-11 15:28:48.516001 | 127.0.0.1 |          12626 | 127.0.0.1
+                                                                               Merged data from memtables and 1 sstables [ReadStage-1] | 2019-06-11 15:28:48.516001 | 127.0.0.1 |          12797 | 127.0.0.1
+                                                                                                                      Request complete | 2019-06-11 15:28:48.517046 | 127.0.0.1 |          13046 | 127.0.0.1
