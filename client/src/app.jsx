@@ -39,7 +39,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const id = window.location.pathname.substring(13);
+    // const id = window.location.pathname.substring(13);
+    let id = Math.floor(Math.random() * 10);
+    id = id.toString();
+    console.log(id);
     $.ajax({
       method: 'GET',
       url: `/restaurants/${id}/reviews`,

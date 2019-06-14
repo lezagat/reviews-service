@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
 const getRecords = function (callback, restaurantNumber) {
   console.log(restaurantNumber);
   const getRecordsString = `SELECT * FROM restaurants WHERE rest_id = ${restaurantNumber}`;
-  connection.query(getRecordsString, (error7, result) => {
-    if (error7) {
-      callback(error7, null);
+  connection.query(getRecordsString, (error, result) => {
+    if (error) {
+      callback(error, null);
     } else {
       callback(null, result);
     }
@@ -26,7 +26,6 @@ const postRecords = function (review,res,cb){
 const updateRecords = function (review,res,cb){
   connection.query(`UPDATE restaurants (review) VALUES ("${review}")`,cb);
 }
-
 
 module.exports = {
   getRecords, postRecords, updateRecords
