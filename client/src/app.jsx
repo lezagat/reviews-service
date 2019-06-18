@@ -45,7 +45,7 @@ class App extends React.Component {
     console.log(id);
     $.ajax({
       method: 'GET',
-      url: `/restaurants/${id}/reviews`,
+      url: `/api/restaurants/${id}/reviews`,
       success: (result) => {
         console.log(result);
         const newRestaurant = result[0];
