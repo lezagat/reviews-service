@@ -32,3 +32,5 @@ dist/
 client/dist/bundle.js
 data.csv
 data1.csv
+data.csv.gz
+data1.csv.gz

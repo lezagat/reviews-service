@@ -8,7 +8,6 @@ const connection = mysql.createConnection({
 });
 
 const getRecords = function (callback, restaurantNumber) {
-  console.log(restaurantNumber);
   const getRecordsString = `SELECT * FROM restaurants WHERE rest_id = ${restaurantNumber}`;
   connection.query(getRecordsString, (error, result) => {
     if (error) {

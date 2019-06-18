@@ -2,9 +2,9 @@ import { check } from "k6";
 import http from "k6/http";
 
 export  let options = {
-  vus:500,        //virtual users
-  rps:500,       //request per second
-  duration:"3m"    //duration of the test
+  vus:600,        //virtual users
+  rps:600,       //request per second
+  duration:"3s"    //duration of the test
 }
 
 export default function() {
