@@ -36,6 +36,7 @@ app.use(express.static(`${__dirname}/../client/dist`));
 // })
 
 app.get('/api/restaurants/:id/reviews', (req, res) => {
+  console.log("Hello");
   const id = req.params.id;
   database.getRecords((error, result) => {
     if (error) {

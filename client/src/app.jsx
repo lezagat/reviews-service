@@ -39,14 +39,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // const id = window.location.pathname.substring(13);
-    let id = Math.floor(Math.random() * 10);
-    id = id.toString();
-    console.log(id);
+    const id = window.location.href.split('/')[4];
+    console.log('id is:', id)
+    // let id = Math.floor(Math.random() * 10);
+    // id = id.toString();
     $.ajax({
       method: 'GET',
-      
-      url: `http://13.52.163.91:3010/api/restaurants/${id}/reviews`,
+      url: `http://localhost:3010/api/restaurants/${id}/reviews`,
+      dataType: 'json',
+      // url: `http://13.52.163.91:3010/api/restaurants/${id}/reviews`,
       success: (result) => {
         console.log(result);
         const newRestaurant = result[0];
