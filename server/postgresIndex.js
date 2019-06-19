@@ -15,18 +15,19 @@ app.use(express.static(`${__dirname}/../client/dist`));
 const {Pool} = require('pg');
 
 const pool = new Pool({
-  host:"localhost",
-  database: 'restaurants'
-  //user
-  //pw
+  host:"18.144.57.145",
+  database: 'restaurants',
+  user:  'postgres',
+  pw: 'ivanlee',
+  port: 5432
 })
 
-pool.connect((err,client,release)=> {
-  if(err){
-    res.status(500).send(err);
-    return;
-  }
-})
+// pool.connect((err,client,release)=> {
+//   if(err){
+//     // res.status(500).send(err);
+//     return;
+//   }
+// })
 
 app.get('/restaurants/:id/reviews', (req, res) => {
   var newId= req.params.id;
