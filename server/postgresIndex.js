@@ -18,11 +18,11 @@ app.get('/restaurants/:id' , (req,res)=> {
 const {Pool} = require('pg');
 
 const pool = new Pool({
-  // host:"18.144.57.145",
-  host: "localhost",
+  host:"54.183.208.118",
+  // host: "localhost",
   database: 'restaurants',
-  user:  'ivanlee',
-  // pw: 'ivanlee',
+  user:  'postgres',
+  password: 'hackreactor',
   port: 5432
 })
 
@@ -41,6 +41,7 @@ app.get('/api/restaurants/:id/reviews', (req, res) => {
       console.log('when data received, then', data.rows)
       res.status(200).send(data.rows);
     }) .catch((err) => {
+      console.log(err)
       res.status(500).send(err);
     })
 })
